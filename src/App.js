@@ -3,20 +3,21 @@ import './App.css';
 import SingleCard from './components/SingleCard';
 
 const cardImages = [
-  { "src": "/img/helmet-1.png", matched: false },
-  { "src": "/img/potion-1.png", matched: false },
-  { "src": "/img/ring-1.png", matched: false },
-  { "src": "/img/scroll-1.png", matched: false },
-  { "src": "/img/shield-1.png", matched: false },
-  { "src": "/img/sword-1.png", matched: false }
+  { "src": "/img/slonko.png", matched: false },
+  { "src": "/img/czapka.png", matched: false },
+  { "src": "/img/domek.png", matched: false },
+  { "src": "/img/kapelusz.png", matched: false },
+  { "src": "/img/listek.png", matched: false },
+  { "src": "/img/ogien.png", matched: false }
 ]
-
+  const Fireworks = Array(6).fill(0)
 function App() {
   const [cards, setCards] = useState([])
   const [turns, setTurns] = useState(0)
   const [choiceOne, setChoiceOne] = useState(null)
   const [choiceTwo, setChoiceTwo] = useState(null)
   const [disabled, setDisabled] = useState(false)
+  const [gameWon, setGameWon] = useState(false)
 
   const shuffleCards = () => {
     const shuffleCards = [...cardImages, ...cardImages]
@@ -47,7 +48,6 @@ function App() {
         })
         resetTurn()
       } else {
-
         setTimeout(() => resetTurn(), 500)
       }
     }
@@ -56,8 +56,9 @@ function App() {
   const resetTurn = () => {
     setChoiceOne(null)
     setChoiceTwo(null)
-    setTurns(prevTurns => prevTurns + 1)
+    setTurns(prevTurns => prevTurns + 1) 
     setDisabled(false)
+
   }
 
   useEffect(() => {
@@ -66,7 +67,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Magic Match</h1>
+      <h1>Memory Game</h1>
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map(card => (
